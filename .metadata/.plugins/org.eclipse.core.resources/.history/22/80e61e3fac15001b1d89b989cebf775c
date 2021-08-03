@@ -1,0 +1,38 @@
+package travel;
+import java.util.*;
+public class test {
+	public static void main(String args[])
+	{
+		Scanner sc=new Scanner(System.in);
+		int sleeping_remain=15;
+		int seating_remain=10;
+		boolean[] sleeping=new boolean[26];
+		boolean[] seating=new boolean[11];
+		Luxury l=new Luxury();
+		System.out.println("Enter number of seats");
+		int n=sc.nextInt();
+		if(l.bus_t.equals("seating") && n<seating_remain)
+		{
+			seating_remain-=n;
+			for(int i=0;i<n;i++)
+			{
+				System.out.println("Enter seat number");
+				int x=sc.nextInt();
+				l.add_seat(x,seating,n);
+				seating=l.updateseat();
+			}
+		}
+		else if(l.bus_t.equals("sleeping") && n<sleeping_remain)
+		{
+			sleeping_remain-=n;
+			for(int i=0;i<n;i++)
+			{
+				System.out.println("Enter seat number");
+				int x=sc.nextInt();
+				l.add_seat(x,sleeping,n);
+				sleeping=l.updateseat();
+			}
+		}
+		l.display();
+	}
+}

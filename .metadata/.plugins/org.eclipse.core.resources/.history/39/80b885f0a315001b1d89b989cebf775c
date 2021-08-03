@@ -1,0 +1,5 @@
+package travel;
+import java.util.*;
+public class MyException extends Exception{
+	
+}

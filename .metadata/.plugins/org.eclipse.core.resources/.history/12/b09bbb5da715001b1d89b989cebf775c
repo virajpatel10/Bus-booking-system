@@ -1,0 +1,7 @@
+package travel;
+import java.util.*;
+class MyException extends Exception {
+	public String toString() {
+		return "Valid city";
+	}
+}

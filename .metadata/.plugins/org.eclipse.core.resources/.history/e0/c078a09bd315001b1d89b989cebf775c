@@ -1,0 +1,141 @@
+package travel;
+import java.util.*;
+public class Booking {
+	static int luxseat=10;
+	static int luxsleep=15;
+	static boolean[] luxseatbook=new boolean[11];
+	static boolean[] luxsleepbook=new boolean[26];
+	static int volseat=16;
+	static int volsleep=20;
+	static boolean[] volseatbook=new boolean[16];
+	static boolean[] volsleepbook=new boolean[36];
+	public static void main(String args[])
+	{
+		Scanner sc=new Scanner(System.in);
+		while(1>0)
+		{
+			System.out.println("Enter choice");
+			System.out.println("1.New Customer");
+			System.out.println("2.exit");
+			int y=sc.nextInt();
+			if(y==1)
+			{
+				System.out.println("Enter the type of the bus");
+				System.out.println("1.Luxury");
+				System.out.println("2.Volvo");
+				int x=sc.nextInt();
+				switch(x)
+				{
+					case 1:
+					{
+						Lux();
+						break;
+					}
+					case 2:
+					{
+						Vol();
+						break;
+					}
+				}
+			}
+			else if(y==2)
+			{
+				break;
+			}
+		}
+	}
+	public static void Lux()
+	{
+		Scanner sc=new Scanner(System.in);
+		if(luxseat==0 && luxsleep==0)
+		{
+			System.out.println("No seat Avaliable");
+			return;
+		}
+		else if(luxseat==0)
+		{
+			System.out.println("No seating seat Avaliable");
+		}
+		else if(luxsleep==0)
+		{
+			System.out.println("No sleeping seat Avaliable");
+		}
+		System.out.println("Customer Name");
+		String s=sc.next();
+		System.out.println("Customer Age");
+		int age=sc.nextInt();
+		System.out.println("Customer Gender");
+		String gender=sc.next();
+		Luxury l=new Luxury(s,age,gender);
+		System.out.println("Enter number of seats");
+		int n=sc.nextInt();
+		if(l.bus_t.equals("seating") && n<=luxseat)
+		{
+			luxseat-=n;
+			for(int i=0;i<n;i++)
+			{
+				System.out.println("Enter seat number");
+				int x=sc.nextInt();
+				l.add_seat(x,luxseatbook,n);
+				luxseatbook=l.updateseat();
+			}
+		}
+		else if(l.bus_t.equals("sleeping") && n<=luxsleep)
+		{
+			luxsleep-=n;
+			for(int i=0;i<n;i++)
+			{
+				System.out.println("Enter seat number");
+				int x=sc.nextInt();
+				l.add_seat(x,luxsleepbook,n);
+				luxsleepbook=l.updateseat();
+			}
+		}
+		else 
+		{
+			System.out.println("Not Valid");
+		}
+		l.display();
+	}
+	public static void Vol()
+	{
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Customer Name");
+		String s=sc.next();
+		System.out.println("Customer Age");
+		int age=sc.nextInt();
+		System.out.println("Customer Gender");
+		String gender=sc.next();
+		Volvo v=new Volvo(s,age,gender);
+		System.out.println("Enter number of seats");
+		int n=sc.nextInt();
+		if(v.bus_t.equals("seating") && n<=volseat)
+		{
+			volseat-=n;
+			for(int i=0;i<n;i++)
+			{
+				System.out.println("Enter seat number");
+				int x=sc.nextInt();
+				v.add_seat(x,volseatbook,n);
+				volseatbook=v.updateseat();
+			}
+		}
+		else if(v.bus_t.equals("sleeping") && n<=volsleep)
+		{
+			volsleep-=n;
+			for(int i=0;i<n;i++)
+			{
+				System.out.println("Enter seat number");
+				int x=sc.nextInt();
+				v.add_seat(x,volsleepbook,n);
+				volsleepbook=v.updateseat();
+			}
+		}
+		else
+		{
+			System.out.println("Enter valid detail");
+		}
+		v.display();
+	}
+	
+}

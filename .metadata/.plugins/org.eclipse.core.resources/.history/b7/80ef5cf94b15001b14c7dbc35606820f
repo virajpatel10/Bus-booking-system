@@ -1,0 +1,36 @@
+package travel;
+import java.util.*;
+public class test {
+	public static void main(String args[])
+	{
+		Scanner sc=new Scanner(System.in);
+		System.out.println("journey date");
+		int journey_date=sc.nextInt();
+		System.out.println("source");
+		String source=sc.next();
+		System.out.println("Destination");
+		String Destination=sc.next();
+		System.out.println("bus type");
+		System.out.println("1.mini");
+		System.out.println("2.large");
+		String t_bus=sc.next();
+		System.out.println("seat type");
+		System.out.println("1.seating");
+		System.out.println("2.sleeping");
+		String seat_t=sc.next();
+		Luxury l=new Luxury(journey_date,source,Destination,t_bus,seat_t);
+		System.out.println("Enter number of seat");
+		int n=sc.nextInt();
+		if(n<l.remainseat())
+		{
+			System.out.println(l.remainseat());
+			int[] x=new int[n];
+			System.out.println("Enter seat number");
+			for(int i=0;i<n;i++)
+			{
+				x[i]=sc.nextInt();
+			}
+			l.add_seat(x);
+		}
+	}
+}

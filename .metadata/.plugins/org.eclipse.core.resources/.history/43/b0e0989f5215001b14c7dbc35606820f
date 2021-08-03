@@ -1,0 +1,8 @@
+package travel;
+
+public class Volvo implements Bus{
+	public void display()
+	{
+		
+	}
+}

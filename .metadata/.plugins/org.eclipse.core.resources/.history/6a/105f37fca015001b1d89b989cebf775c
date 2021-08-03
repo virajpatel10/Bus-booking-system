@@ -1,0 +1,13 @@
+package travel;
+import java.util.*;
+public class test {
+	public static void main(String args[])
+	{
+		Scanner sc=new Scanner(System.in);
+		int sleeper_reamin=15;
+		int seating_remain=10;
+		boolean[] sleeper=new boolean[26];
+		boolean[] seating=new boolean[11];
+		Luxury l=new Luxury();
+	}
+}

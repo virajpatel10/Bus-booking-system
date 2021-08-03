@@ -1,0 +1,147 @@
+package travel;
+
+import java.util.Scanner;
+
+public class Volvo extends Customer implements Bus{
+	Scanner sc=new Scanner(System.in);
+	final String bus_no="GJ-05-RL-3456";
+	int number_of_seat;
+	boolean[] seat;
+	String jourany_date;
+	String source;
+	String destination;
+	String bus_t;
+	int rate;
+	int no;
+	Volvo(String name,int age,String gender)
+	{
+		super(name,age,gender);
+		add_details();
+		if(bus_t.equals("seating"))  //number of seat and rate according to seating
+		{
+			number_of_seat=15;
+			rate=450;
+		}
+		else if(bus_t.equals("sleeping")) //number of seat and rate according to sleeping
+		{
+			number_of_seat=20;
+			rate = 600; 
+		}
+		else 
+		{
+			System.out.println("Not Valid");
+			number_of_seat=0;
+		}
+	}
+	void add_details()     //take details from user about source and destination
+	{
+		System.out.println("jourany_date");
+		jourany_date=sc.next();
+		System.out.println("source with state");
+		source=sc.next();
+		try                                   //check that source is interstate or not
+		{
+			compute(source);
+		}
+		catch(MyException e)
+		{
+			System.out.println(e);
+		}
+		System.out.println("Destination with state");
+		destination=sc.next();
+		try									//check that destination is interstate or not
+		{
+			compute(destination);
+		}
+		catch(MyException e)
+		{
+			System.out.println(e);
+		}
+		System.out.println("seat type");
+		bus_t=sc.next();
+	}
+	
+	static void compute(String s) throws MyException{			//exception handling 
+	      if (s.contains("gujarat"))
+	         throw new MyException();
+	      System.out.println("Bus doesn't Goes in this city");
+	}
+	
+	void add_seat(int x,boolean[] s,int n)  // add seat
+	{
+		seat=s;
+		no=n;
+		if(bus_t.equals("seating"))
+		{
+			if(!seat[x] && (x>0 && x<16))
+			{
+				seat[x]=true;
+			}
+			else
+			{
+				System.out.println("Seat Already Booked Select Seat From Reamining");
+				remainseat();				//if full then check which place remain
+				int y=sc.nextInt();			//enter seat from remain seats
+				seat[y]=true;
+			}
+		}
+		else if(bus_t.equals("sleeping"))
+		{
+			if(!seat[x] && (x>15 && x<36))
+			{
+				seat[x]=true;
+			}
+			else
+			{
+				System.out.println("Seat Already Booked Select Seat From Reamining");
+				remainseat();
+				int y=sc.nextInt();
+				seat[y]=true;
+			}
+		}
+	}
+	void remainseat()					//check according to seating and sleeping
+	{
+		if(bus_t.equals("seating"))
+		{
+			for(int i=1;i<=number_of_seat;i++)
+			{
+				if(!seat[i])
+				{
+					System.out.print(i+" ");
+				}
+			}
+			System.out.println();
+		}
+		else if(bus_t.equals("sleeping"))
+		{
+			for(int i=16;i<=number_of_seat+15;i++)
+			{
+				if(!seat[i])
+				{
+					System.out.print(i+" ");
+				}
+			}
+			System.out.println();
+		}
+	}
+	boolean[] updateseat()    //update seats
+	{
+		return seat;
+	}
+	public void display()    //display all details
+	{
+		System.out.println("Bus Number : "+bus_no);
+		System.out.println("Bus Type : Volvo");
+		System.out.println("Customer take total  number of seats : "+no);
+		System.out.println("jourany_date : "+jourany_date);
+		System.out.println("source with state : "+source);
+		System.out.println("Destination with state : "+destination);
+		System.out.println("seat type : "+bus_t);
+		System.out.println("Toatl Cost : "+(rate*no));
+		System.out.println("Facility :");
+		System.out.println("1.A.C");
+		System.out.println("2.Wi-Fi");
+		System.out.println("3.Sleeping Materials");
+	}
+}

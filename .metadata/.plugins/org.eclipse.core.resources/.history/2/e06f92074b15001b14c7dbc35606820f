@@ -1,0 +1,76 @@
+package travel; 
+import java.util.*;
+public class Luxury implements Bus{
+	Scanner sc=new Scanner(System.in); 
+	final String bus_no="GJ-05-RL-1234";
+	final int number_of_seats;
+	boolean[] seat;
+	int[] occupancy;
+	int journey_date;
+	String source;
+	String Destination;
+	String t_bus;
+	String seat_t;
+	static int remain_seat=0; 
+	Luxury(int journey_date,String source,String Destination,String t_bus,String seat_t)
+	{
+		this.journey_date=journey_date;
+		this.source=source;
+		this.Destination=Destination;
+		this.t_bus=t_bus;
+		this.seat_t=seat_t;
+		if(t_bus.equals("mini") && (seat_t.equals("seating") || seat_t.equals("slepper")))
+		{
+			number_of_seats=10;
+			seat=new boolean[number_of_seats+1];
+		}
+		else if(t_bus.equals("large") && (seat_t.equals("seating") || seat_t.equals("slepper")))
+		{
+			number_of_seats=15;
+			seat=new boolean[number_of_seats+1];
+		}
+		else
+		{
+			System.out.println("NOT VALID");
+			number_of_seats=0;
+		}
+	}
+	void add_seat(int x[])
+	{
+		occupancy=x;
+		remain_seat+=x.length;
+		for(int i=0;i<x.length;i++)
+		{
+			if(!seat[x[i]])
+			{
+				seat[x[i]]=true;
+			}
+			else
+			{
+				System.out.println("Booked Ticket choose from remaining");
+				remain();
+				int y=sc.nextInt();
+				seat[y]=true;
+			}
+		}
+	}
+	void remain()
+	{
+		for(int i=1;i<=number_of_seats;i++)
+		{
+			if(!seat[i])
+			{
+				System.out.print(i+" ");
+			}
+		}
+		System.out.println();
+	}
+	int remainseat()
+	{
+		return number_of_seats-remain_seat;
+	}
+	public void display()
+	{
+		
+	}
+}

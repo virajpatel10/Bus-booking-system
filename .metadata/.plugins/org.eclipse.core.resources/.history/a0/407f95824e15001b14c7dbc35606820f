@@ -1,0 +1,70 @@
+package travel;
+import java.util.*;
+public class test {
+	public static void main(String args[])
+	{
+		Scanner sc=new Scanner(System.in);
+		boolean[] mseat=new boolean[11]; 
+		int mremain=10;
+		System.out.println("journey date");
+		int journey_date=sc.nextInt();
+		System.out.println("source");
+		String source=sc.next();
+		System.out.println("Destination");
+		String Destination=sc.next();
+		System.out.println("bus type");
+		System.out.println("1.mini");
+		System.out.println("2.large");
+		String t_bus=sc.next();
+		System.out.println("seat type");
+		System.out.println("1.seating");
+		System.out.println("2.sleeping");
+		String seat_t=sc.next();
+		Luxury l=new Luxury(journey_date,source,Destination,t_bus,seat_t);
+		System.out.println("Enter number of seat");
+		int n=sc.nextInt();
+		if(n<mremain)
+		{
+			mremain-=n;
+			System.out.println(mremain);
+			int[] x=new int[n];
+			System.out.println("Enter seat number");
+			for(int i=0;i<n;i++)
+			{
+				x[i]=sc.nextInt();
+			}
+			l.add_seat(x,mseat);
+			mseat=l.updateseat();
+		}
+		System.out.println("journey date");
+		journey_date=sc.nextInt();
+		System.out.println("source");
+		source=sc.next();
+		System.out.println("Destination");
+		Destination=sc.next();
+		System.out.println("bus type");
+		System.out.println("1.mini");
+		System.out.println("2.large");
+		t_bus=sc.next();
+		System.out.println("seat type");
+		System.out.println("1.seating");
+		System.out.println("2.sleeping");
+		seat_t=sc.next();
+		Luxury l1=new Luxury(journey_date,source,Destination,t_bus,seat_t);
+		System.out.println("Enter number of seat");
+		int m=sc.nextInt();
+		if(m<mremain)
+		{
+			mremain-=m;
+			System.out.println(mremain);
+			int[] x=new int[m];
+			System.out.println("Enter seat number");
+			for(int i=0;i<m;i++)
+			{
+				x[i]=sc.nextInt();
+			}
+			l.add_seat(x,mseat);
+			mseat=l.updateseat();
+		}
+	}
+}

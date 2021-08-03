@@ -1,0 +1,7 @@
+package travel; 
+public class Luxury implements Bus{
+	public void display()
+	{
+		
+	}
+}
