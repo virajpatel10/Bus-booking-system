@@ -1,4 +1,4 @@
-# Bus Booking System
+# BusEase
 
 ## Project Overview
 This Java-based Bus Booking System efficiently manages customer details and reservations, ensuring customers receive the lowest price option among 5 available services. The system enhances code maintainability with modular design and robust exception handling, using local storage for data management.
